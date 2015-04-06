@@ -2,6 +2,6 @@
 
 var React = require('react');
 
-var Welcome = require('../jsx/welcome.jsx');
+var Feed = require('../jsx/Feed.jsx');
 
-React.render( <Welcome name="Cristian" />, document.getElementById('container'));
+React.render( <Feed />, document.getElementById('container'));
