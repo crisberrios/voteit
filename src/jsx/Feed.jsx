@@ -4,7 +4,7 @@ var FeedForm      = require('./FeedForm.jsx');
 var FeedList      = require('./FeedList.jsx');
 
 var Feed = React.createClass({
-
+  displayName: 'Feed',
   getInitialState: function() {
     var FEED_ITEMS = [
       { key: '1', title: 'Realtime data!', description: 'Firebase is cool', voteCount: 49 },
@@ -15,26 +15,19 @@ var Feed = React.createClass({
       items: FEED_ITEMS
     }
   },
-
   render: function() {
     return (
       <div>
-
         <div className="container">
           <ShowAddButton />
         </div>
-
         <FeedForm />
-
         <br />
         <br />
-
         <FeedList items={this.state.items} />
-
       </div>
     );
   }
-
 });
 
 module.exports = Feed;
