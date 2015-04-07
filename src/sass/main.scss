@@ -1,24 +1,118 @@
+@import "normalize/normalize";
+@import "bourbon/bourbon";
+@import "base/base";
+@import "textures/textures";
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
 
-body {
+body, html{
+  width: 100%;
+  font-size: 0.625vw;
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
   background: #FAFAFA;
+  box-sizing: border-box;
 }
 
-.badge-success {
-  background: #5cb85c;
-}
-
-.badge-danger {
-  background: #d9534f;
-}
-
-.list-group-item {
-  padding: 20px 15px;
-}
-
-.form-control, .btn, .badge {
-  border-radius: 0;
+#header {
+  box-sizing: border-box;
+  position: relative;
+  color: #fafafa;
+  top: 0;
+  display: block;
+  background: #477dca;
+  width: 100%;
+  padding: 1rem 0 1rem 0.5rem;
+  margin-bottom: 2rem;
+  h1 {
+    color: khaki;
+    display: inline-table;
+    font-family: 'Pacifico', cursive;
+    font-size: 6rem;
+    margin: 0;
+    padding: 0;
+  }
+  h2 {
+    display: inline-table;
+    font-size: 3rem;
+    margin: 0;
+    padding: 0 0 0 2rem;
+  }
+  .login {
+    float: right;
+    display: inline-table;
+    font-size: 2.5rem;
+    margin-right: 2rem;
+    border: 2px solid #fafafa;
+    border-radius: 1rem;
+  }
 }
 
 #feedForm {
   display: none;
+}
+.container {
+  width: 100%;
+  display: block;
+
+  button {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    font-size: 2rem;
+    &.btn-success {
+      background: green;
+    }
+  }
+}
+
+#container {
+  width: 100%;
+  display: table;
+
+  .form-control {
+    display: block;
+    width: 90%;
+    font-size: 2rem;
+    margin: 2rem auto;
+
+  }
+}
+ul {
+  float:left;
+  width: 100%;
+  display: block;
+  li {
+    border: 1px solid #333;
+    width: 90%;
+    margin: 1rem auto;
+    display: table;
+    height: 13rem;
+    font-size: 2rem;
+    padding-left: 1rem;
+    box-sizing: border-box;
+
+    .pull-right {
+      float:right;
+    }
+    .badge {
+      float: right;
+      margin-right: 1rem;
+      margin-top: 0.7rem;
+      background: lightgreen;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+    }
+    .badge-danger {
+      background: tomato;
+    }
+    .btn-sm {
+      font-size: 2rem;
+      width: 3rem;
+      height: 3rem;
+      margin: 0.2rem 1rem 0 0;
+      padding: 0.4rem;
+    }
+    h4 {
+      margin-top: 1rem;
+    }
+  }
 }
