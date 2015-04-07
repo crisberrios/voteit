@@ -2,9 +2,24 @@ var React = require('react');
 
 var ShowAddButton = React.createClass({
   displayName: 'ShowAddButton',
+  propTypes: {
+    onToggleForm: React.PropTypes.func.isRequired,
+    displayed: React.PropTypes.bool.isRequired
+  },
   render: function() {
+
+    var buttonText, classString;
+
+    if(this.props.displayed) {
+      classString = 'btn btn-default btn-block';
+      buttonText = 'Cancel';
+    } else {
+      classString = 'btn btn-success btn-block';
+      buttonText = 'Create new Item';
+    }
+
     return (
-      <button className="btn btn-success btn-block">Create New Item</button>
+      <button className={classString} onClick={this.props.onToggleForm}>{buttonText}</button>
     );
   }
 });

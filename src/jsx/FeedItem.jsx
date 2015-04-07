@@ -5,17 +5,35 @@ var FeedItem = React.createClass({
   propTypes: {
     voteCount: React.PropTypes.number.isRequired,
     title: React.PropTypes.string.isRequired,
-    desc: React.PropTypes.string.isRequired
+    description: React.PropTypes.string.isRequired,
+    onVote: React.PropTypes.func.isRequired,
+    uid: React.PropTypes.any
+  },
+  vote: function(count) {
+    var obj= {
+      key: this.props.uid,
+      title: this.props.title,
+      description: this.props.description,
+      voteCount: count
+    };
+    this.props.onVote(obj);
+  },
+  voteUp: function() {
+   this.vote(parseInt(this.props.voteCount, 10)+1);
+  },
+  voteDown: function() {
+    this.vote(parseInt(this.props.voteCount, 10)-1);
   },
   render: function() {
+    var badge = this.props.voteCount >= 0 ? 'badge badge-success' : 'badge badge-danger';
     return (
       <li className="list-group-item">
-        <span className="badge badge-success">{this.props.voteCount}</span>
+        <span className={badge}>{this.props.voteCount}</span>
         <h4>{this.props.title}</h4>
-        <span>{this.props.desc}</span>
+        <span>{this.props.description}</span>
         <span className="pull-right">
-            <button className="btn btn-sm btn-primary" id="up">&uarr;</button>
-            <button className="btn btn-sm btn-primary" id="down" >&darr;</button>
+            <button className="btn btn-sm btn-primary" id="up" onClick={this.voteUp}>&uarr;</button>
+            <button className="btn btn-sm btn-primary" id="down" onClick={this.voteDown} >&darr;</button>
           </span>
       </li>
     );
