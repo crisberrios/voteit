@@ -2,7 +2,7 @@ var React         = require('react');
 var ShowAddButton = require('./ShowAddButton.jsx');
 var FeedForm      = require('./FeedForm.jsx');
 var FeedList      = require('./FeedList.jsx');
-var _             = require('lodash');
+//var _             = require('lodash');
 var Firebase      = require('firebase');
 
 
@@ -22,13 +22,26 @@ var Feed = React.createClass({
       });
     }.bind(this));
   },
+  getAuth: function() {
+    var ref = new Firebase("https://blazing-fire-230.firebaseio.com/feed");
+    var authData = ref.getAuth();
+    var auth = false;
+    if(authData) {
+      auth = true;
+    }
+    this.setState({
+      auth: auth
+    });
+  },
   componentDidMount: function() {
    this.loadData();
+    this.getAuth();
   },
   getInitialState: function() {
     return {
       items: [],
-      formDisplayed: false
+      formDisplayed: false,
+      auth: false
     }
   },
   onToggleForm: function() {
@@ -39,6 +52,9 @@ var Feed = React.createClass({
   onNewItem: function(newItem) {
     var fb = new Firebase('https://blazing-fire-230.firebaseio.com/feed');
     fb.push(newItem);
+    this.setState({
+      formDisplayed: false
+    });
   },
   onVote: function(item) {
     var fb = new Firebase('https://blazing-fire-230.firebaseio.com/feed').child(item.key);
