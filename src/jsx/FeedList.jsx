@@ -5,7 +5,8 @@ var FeedList = React.createClass({
   displayName: 'FeedList',
   propTypes: {
     items: React.PropTypes.array.isRequired,
-    onVote: React.PropTypes.func.isRequired
+    onVote: React.PropTypes.func.isRequired,
+    auth: React.PropTypes.bool.isRequired
   },
   render: function() {
     var arr = this.props.items.slice(0);
@@ -14,7 +15,8 @@ var FeedList = React.createClass({
     });
     var feedItems = arr.map(function(item,idx) {
       return (
-        <FeedItem description={item.description}
+        <FeedItem auth={this.props.auth}
+                  description={item.description}
                   key={idx}
                   uid={item.key}
                   onVote={this.props.onVote}

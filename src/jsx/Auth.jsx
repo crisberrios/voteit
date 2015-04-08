@@ -31,7 +31,7 @@ var Auth = React.createClass({
   render: function () {
     return this.state.auth === false ?
       (<button className="login" onClick={this.auth}>Sign in</button>) :
-      (<h3 className="login welcome">Welcome!</h3>);
+      (<button className="login">Welcome!</button>);
   }
 });
 

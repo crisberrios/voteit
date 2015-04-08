@@ -32,6 +32,17 @@ var Feed = React.createClass({
     this.setState({
       auth: auth
     });
+    ref.onAuth(function(obj) {
+      if(obj) {
+        this.setState({
+          auth: true
+        });
+      } else {
+        this.setState({
+          auth: false
+        });
+      }
+    },this);
   },
   componentDidMount: function() {
    this.loadData();
@@ -58,18 +69,24 @@ var Feed = React.createClass({
   },
   onVote: function(item) {
     var fb = new Firebase('https://blazing-fire-230.firebaseio.com/feed').child(item.key);
-    fb.update(item);
+    fb.update(item, function(error){
+      if(error) {
+        console.log(error);
+      }
+    });
   },
   render: function() {
+    var addButton = this.state.auth ? (<div className="container">
+      <ShowAddButton displayed={this.state.formDisplayed} onToggleForm={this.onToggleForm} />
+    </div>) : (<div></div>);
+
     return (
       <div>
-        <div className="container">
-          <ShowAddButton displayed={this.state.formDisplayed} onToggleForm={this.onToggleForm} />
-        </div>
+        {addButton}
         <FeedForm displayed={this.state.formDisplayed} onNewItem={this.onNewItem} />
         <br />
         <br />
-        <FeedList items={this.state.items} onVote={this.onVote} />
+        <FeedList auth={this.state.auth} items={this.state.items} onVote={this.onVote} />
       </div>
     );
   }
